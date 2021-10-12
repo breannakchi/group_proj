@@ -17,7 +17,7 @@ public class GetName
 		System.out.print("Enter your first name: ");
 		first_name = user_input.next( );
 		
-		System.out.println("Your name is " +first_name);
+		System.out.println("Your name is " + first_name);
 	}
 
 
