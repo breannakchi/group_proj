@@ -3,20 +3,16 @@ package milestone3;
 import java.util.TreeSet;
 
 /**
- * Should we make this class extend the ArrayList Class?
+ * Should we make this class extend the TreeSet Class?
+ *
+ * If we use a TreeSet, information will be retained in sorted order. That might be really helpful
  */
-public class Availability {
-    /**
-     * If we use a TreeSet, information will be retained in sorted order. That might be really helpful
-     */
-    TreeSet<Interval> avail;
+public class Availability extends TreeSet<Interval>{
 
-    public Availability() {
-        avail = new TreeSet<Interval>();
-    }
+    public Availability(){}
 
     public Availability(TreeSet<Interval> a) {
-        avail = a;
+        addAll(a);
     }
 
     /**
@@ -46,9 +42,21 @@ public class Availability {
      * 4. Once I am done iterating through the entire List, go ahead and return the Availability object.
      */
     public Availability computeOverlap(Availability a) {
+        // Part 1
+        reduce();
+        a.reduce();
+
+        //Part 2
+        Availability union = sort(this, a);
+        Availability intersection = new Availability();
+
+        /**
+         * TODO: Part 3
+         */
 
 
-        return null;
+        //Part 4
+        return intersection;
     }
 
 
@@ -58,7 +66,7 @@ public class Availability {
      * @param b
      * @return
      */
-    public TreeSet<Interval> sort (TreeSet<Interval> a, TreeSet<Interval> b){
+    public Availability sort (Availability a, Availability b){
 
         return null;
     }
