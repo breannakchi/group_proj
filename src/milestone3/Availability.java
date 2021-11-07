@@ -1,5 +1,8 @@
 package milestone3;
 
+import java.sql.Timestamp;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.TreeSet;
 
 /**
@@ -9,21 +12,50 @@ import java.util.TreeSet;
  */
 public class Availability extends TreeSet<Interval>{
 
-    public Availability(){}
+    public Availability(){
+        super();
+    }
 
-    public Availability(TreeSet<Interval> a) {
-        addAll(a);
+    public Availability(Collection<Interval> a) {
+        super(a);
     }
 
     /**
      * TODO: Method that reduces collection until there are no overlaps between the intervals.
      * I don't know if I need this functionality yet, but I might need a method that reduces existing overlaps in an
      * Availability object.
+     * @param -
+     * If the Intersection is null, remove the overlapping intervals and replace them with a new one.
+     * Else, save the overlaps in the Intersection.
      */
-    public void reduce() {
+    public void reduce(Availability Intersection) {
+        Iterator<Interval> i = iterator();
+        Interval i1 = i.next();
+        while(i.hasNext()){
+            Interval i2 = i.next();
+            // if 1.end >= 2.start --> Ladies and Gentlemen, we got 'em
+            if(i.next().getStart().compareTo(i.next().getStart()) != 1){
+                //start = 1.start
+                Timestamp s = i1.getStart();
+                //end = 2.end
+                Timestamp e = i2.getEnd();
+                Interval overlap = new Interval(s,e);
 
+
+                if(Intersection != null) Intersection.add(overlap);
+
+                //Add it to the set, remove the two original intervals, and reassign i1.
+                add(overlap);
+                remove(i1);
+                remove(i2);
+                i1 = overlap;
+            }
+            //Ladies and Gentlemen, we don't got 'em
+            else{
+                i1 = i2;
+            }
+        }
     }
-
 
     /**
      * TODO: The toughest part of it all. (First complete reduce() and sort())
@@ -43,17 +75,20 @@ public class Availability extends TreeSet<Interval>{
      */
     public Availability computeOverlap(Availability a) {
         // Part 1
-        reduce();
-        a.reduce();
+        reduce(null);
+        a.reduce(null);
 
         //Part 2
-        Availability union = sort(this, a);
+//        Availability union = sort(this, a);
+        //Let's assume that we don't do insertion sort
+        addAll(a);
         Availability intersection = new Availability();
 
         /**
          * TODO: Part 3
          */
 
+        reduce(intersection);
 
         //Part 4
         return intersection;

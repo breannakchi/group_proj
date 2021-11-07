@@ -47,7 +47,7 @@ public class IntervalTests {
 
     @Test
     /**
-     *
+     * Time to
      */
     public void test3() {
 

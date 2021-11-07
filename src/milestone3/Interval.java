@@ -5,9 +5,30 @@ import java.sql.Timestamp;
 public class Interval implements Comparable<Interval> {
     private Timestamp start, end;
 
+    public Interval(){
+        start = end = null;
+    }
+
+    public Interval(Timestamp s, Timestamp e){
+        start = s;
+        end = e;
+    }
+
     public Interval(int[] a, int[] b) {
         start = new Timestamp(a[0] + 99, a[1], a[2], a[3], a[4], 0, 0);
         end = new Timestamp(b[0], b[1], b[2], b[3], b[4], 0, 0);
+    }
+
+    /**
+     * Assuming that these two parameters are already sorted, begin to overlap the two intervals into a new one.
+     * @param a
+     * @param b
+     * @return
+     */
+    public static boolean overlap(Interval a, Interval b){
+        Interval r = new Interval();
+
+        return false;
     }
 
     /**
@@ -19,7 +40,9 @@ public class Interval implements Comparable<Interval> {
      */
     @Override
     public int compareTo(Interval o) {
-        return this.start.compareTo(o.start);
+        int startComparison =  this.start.compareTo(o.start);
+        if(startComparison != 0) return startComparison;
+        else return this.end.compareTo(o.end);
     }
 
     /**
@@ -30,7 +53,8 @@ public class Interval implements Comparable<Interval> {
      */
     @Override
     public boolean equals(Object o) {
-        return start.equals(((Interval) o).start) && end.equals(((Interval) o).end);
+        return this.compareTo(((Interval) o)) == 0;
+//        return start.equals(((Interval) o).start) && end.equals(((Interval) o).end);
     }
 
 
