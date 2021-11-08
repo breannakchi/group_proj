@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
+import milestone3.Availability.IntervalComparator;
 
 
 import static milestone3.Availability.computeOverlap;
@@ -111,10 +112,10 @@ public class AvailabilityTests {
 
 }
 
-class IntervalComparator implements Comparator<Interval> {
-
-    @Override
-    public int compare(Interval o1, Interval o2) {
-        return o1.compareTo(o2);
-    }
-}
+//class IntervalComparator implements Comparator<Interval> {
+//
+//    @Override
+//    public int compare(Interval o1, Interval o2) {
+//        return o1.compareTo(o2);
+//    }
+//}

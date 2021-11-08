@@ -1,16 +1,40 @@
 package milestone3;
 
 import java.sql.Timestamp;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * Should we make this class extend the TreeSet Class?
  *
  * If we use a TreeSet, information will be retained in sorted order. That might be really helpful
  */
-public class Availability extends TreeSet<Interval>{
+public class Availability extends ArrayList<Interval> {
+
+    public static class IntervalComparator implements Comparator<Interval> {
+        @Override
+        public int compare(Interval o1, Interval o2) {
+            return o1.compareTo(o2);
+        }
+    }
+
+    private class AvailabilityIterator implements Iterator<Interval> {
+        int index = -1;
+
+        @Override
+        public boolean hasNext() {
+            sort(new IntervalComparator());
+            return index < size() - 1;
+        }
+
+        @Override
+        public Interval next() {
+            if(hasNext()) {
+                index++;
+                return get(index);
+            }
+            else return null;
+        }
+    }
 
     public Availability(){
         super();
@@ -20,10 +44,16 @@ public class Availability extends TreeSet<Interval>{
         super(a);
     }
 
+    @Override
+    public Iterator<Interval> iterator() {
+        return new AvailabilityIterator();
+    }
+
     /**
      * TODO: Method that reduces collection until there are no overlaps between the intervals.
      * I don't know if I need this functionality yet, but I might need a method that reduces existing overlaps in an
      * Availability object.
+     *
      * @param -
      * If the Intersection is null, remove the overlapping intervals and replace them with a new one.
      * Else, save the overlaps in the Intersection.
@@ -33,7 +63,7 @@ public class Availability extends TreeSet<Interval>{
 
         Interval i1, i2;
         i1 = i.next();
-        i2 = i.next();
+        i2 = i.next();//TODO: what if size of Availability is 1?
 
         Availability intersection = new Availability();
 
@@ -74,7 +104,8 @@ public class Availability extends TreeSet<Interval>{
             else{
                 i1 = i2;
             }
-            i2 = i.next();
+            if(i.hasNext())  i2 = i.next();
+            else break;
         }
         return intersection;
     }
@@ -106,13 +137,9 @@ public class Availability extends TreeSet<Interval>{
 //        Availability union = sort(this, a);
         //Let's assume that we don't do insertion sort
         a1.addAll(a2);
+
+        //Part 3
         Availability intersection = a1.reduce(false);
-
-        /**
-         * TODO: Part 3
-         */
-
-
 
         //Part 4
         return intersection;
