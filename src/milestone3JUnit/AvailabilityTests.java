@@ -62,24 +62,52 @@ public class AvailabilityTests {
 
     }
 
+
     @Test
     /**
      * Reduce Test: No overlap
+     *
+     * Karan
      */
     public void test2(){
 
+        // year, month, date, hour, minute
 
         int[] a = {10, 21, 21, 21, 21};
         int[] b = {10, 21, 21, 21, 21};
         Interval i1 = new Interval(a, b);
 
-        int[] c = {20, 21, 21, 21, 21};
+        int[] c = {20, 21, 25, 11, 21};
         int[] d = {100, 21, 21, 21, 21};
         Interval i2 = new Interval(c, d);
+
+        // Karan
+        int[] e = {20, 11, 25, 11, 46};
+        int[] f = {50, 10, 25, 12, 45};
+        Interval i3 = new Interval(e, f);
+
+        int[] g = {2000, 11, 25, 11, 46};
+        int[] h = {2050, 10, 25, 12, 45};
+        Interval i4 = new Interval(g, h);
+
+        // year, month, date, hour, minute
+
+        int[] i = {1999, 9, 22, 21, 45};
+        int[] j = {2001, 8, 12, 10, 45};
+        Interval i5 = new Interval(i, j);
+
+        int[] k = {2022, 11, 25, 11, 46};
+        int[] l = {2050, 10, 25, 12, 45};
+        Interval i6 = new Interval(k, l);
 
         Availability apple = new Availability();
         apple.add(i1);
         apple.add(i2);
+        apple.add(i3);
+        apple.add(i4);
+        apple.add(i5);
+        apple.add(i6);
+
 
         apple.reduce(false);
 
@@ -104,6 +132,105 @@ public class AvailabilityTests {
         Availability bannana = new Availability();
 
        System.out.println(computeOverlap(apple,bannana));
+
+
+    }
+
+    @Test
+    /**
+     * Singular Overlap
+     * Karan
+     */
+    public void test4(){
+
+        // year, month, date, hour, minute
+
+        int[] a = {10, 21, 21, 21, 21};
+        int[] b = {10, 21, 21, 21, 21};
+        Interval i1 = new Interval(a, b);
+
+        int[] c = {20, 21, 25, 11, 21};
+        int[] d = {100, 21, 21, 21, 21};
+        Interval i2 = new Interval(c, d);
+
+        // Karan
+        int[] e = {20, 11, 25, 11, 46};
+        int[] f = {50, 10, 25, 12, 45};
+        Interval i3 = new Interval(e, f);
+
+        int[] g = {2000, 11, 25, 11, 46};
+        int[] h = {2050, 10, 25, 12, 45};
+        Interval i4 = new Interval(g, h);
+
+        // year, month, date, hour, minute
+
+        int[] i = {1999, 9, 22, 21, 45};
+        int[] j = {2001, 8, 12, 10, 45};
+        Interval i5 = new Interval(i, j);
+
+        int[] k = {2022, 11, 25, 11, 46};
+        int[] l = {2050, 10, 25, 12, 45};
+        Interval i6 = new Interval(k, l);
+
+        Availability apple = new Availability();
+        apple.add(i1);
+        apple.add(i2);
+        apple.add(i3);
+
+
+        Availability banana = new Availability();
+        banana.add(i4);
+        banana.add(i5);
+        banana.add(i6);
+
+        System.out.println(computeOverlap(apple,banana));
+
+
+
+
+    }
+
+    @Test
+    /**
+     * Singular Overlap
+     * Karan
+     */
+    public void test5(){
+
+        // year, month, date, hour, minute
+
+
+
+        // Karan
+//        int[] e = {20, 11, 25, 11, 46};
+//        int[] f = {50, 10, 25, 12, 45};
+//        Interval i3 = new Interval(e, f);
+
+        int[] g = {2000, 11, 25, 11, 46};
+        int[] h = {2050, 10, 25, 12, 45};
+        Interval i1 = new Interval(g, h);
+
+        // year, month, date, hour, minute
+
+        int[] i = {1999, 9, 22, 21, 45};
+        int[] j = {2001, 8, 12, 10, 45};
+        Interval i2 = new Interval(i, j);
+
+//        int[] k = {2022, 11, 25, 11, 46};
+//        int[] l = {2050, 10, 25, 12, 45};
+//        Interval i6 = new Interval(k, l);
+
+        Availability apple = new Availability();
+        apple.add(i1);
+
+
+        Availability banana = new Availability();
+        banana.add(i2);
+
+
+        System.out.println(computeOverlap(apple,banana));
+
+
 
 
     }
