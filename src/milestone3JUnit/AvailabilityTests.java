@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 
 
+import static milestone3.Availability.computeOverlap;
 import static org.junit.Assert.*;
 
 
@@ -63,11 +64,50 @@ public class AvailabilityTests {
 
     @Test
     /**
-     * Time to test the functionality of computeOverlap()
+     * Reduce Test: No overlap
      */
     public void test2(){
 
+
+        int[] a = {10, 21, 21, 21, 21};
+        int[] b = {10, 21, 21, 21, 21};
+        Interval i1 = new Interval(a, b);
+
+        int[] c = {20, 21, 21, 21, 21};
+        int[] d = {100, 21, 21, 21, 21};
+        Interval i2 = new Interval(c, d);
+
+        Availability apple = new Availability();
+        apple.add(i1);
+        apple.add(i2);
+
+        apple.reduce(false);
+
     }
+
+    @Test
+    /**
+     * Singular Overlap
+     */
+    public void test3(){
+
+
+        int[] a = {10, 21, 21, 21, 21};
+        int[] b = {10, 21, 21, 21, 21};
+        Interval i1 = new Interval(a, b);
+
+        int[] c = {20, 21, 21, 21, 21};
+        int[] d = {100, 21, 21, 21, 21};
+        Interval i2 = new Interval(c, d);
+
+        Availability apple = new Availability();
+        Availability bannana = new Availability();
+
+       System.out.println(computeOverlap(apple,bannana));
+
+
+    }
+
 
 }
 

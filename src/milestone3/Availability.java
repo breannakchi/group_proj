@@ -28,34 +28,58 @@ public class Availability extends TreeSet<Interval>{
      * If the Intersection is null, remove the overlapping intervals and replace them with a new one.
      * Else, save the overlaps in the Intersection.
      */
-    public void reduce(Availability Intersection) {
+    public Availability reduce(boolean performReduction) {
         Iterator<Interval> i = iterator();
-        Interval i1 = i.next();
+
+        Interval i1, i2;
+        i1 = i.next();
+        i2 = i.next();
+
+        Availability intersection = new Availability();
+
         while(i.hasNext()){
-            Interval i2 = i.next();
-            // if 1.end >= 2.start --> Ladies and Gentlemen, we got 'em
-            if(i.next().getStart().compareTo(i.next().getStart()) != 1){
-                //start = 1.start
-                Timestamp s = i1.getStart();
-                //end = 2.end
-                Timestamp e = i2.getEnd();
-                Interval overlap = new Interval(s,e);
+            /*
+                If 1.end >= 2.start --> Ladies and Gentlemen, we got 'em
 
+                During this time i have to calculate the overlap between these two intervals and return it.
+            */
+            if(i1.getEnd().compareTo(i2.getStart()) != 1){
 
-                if(Intersection != null) Intersection.add(overlap);
+                if(performReduction) {
+                    //We know that the younger one has an earlier start time
+                    Timestamp reductionStart = i1.getStart();
+                    //However we don't know if the older or younger has a later finish time
+                    //TODO: Figure out who has the later finish time.
+                    Timestamp reductionEnd = (i1.getEnd().compareTo(i2.getEnd()) == 1) ? i1.getEnd() :  i2.getEnd();
+                    Interval reduction = new Interval(reductionStart, reductionEnd);
 
-                //Add it to the set, remove the two original intervals, and reassign i1.
-                add(overlap);
-                remove(i1);
-                remove(i2);
-                i1 = overlap;
+                    //Add the reduced interval to the Availability, and remove the two intervals.
+                    add(reduction);
+                    remove (i1);
+                    remove(i2);
+                    //Assign the reduced interval to i1.
+                    i1 = reduction;
+                }
+                else{
+
+                    Timestamp overlapStart = i2.getStart();
+                    Timestamp overlapEnd = (i1.getEnd().compareTo(i2.getEnd()) == 1) ? i1.getEnd() :  i2.getEnd();
+                    Interval overlap = new Interval(overlapStart, overlapEnd);
+                    intersection.add(overlap);
+
+                    //How do we handle the Interval pointers once we have completed the overlap
+                }
             }
             //Ladies and Gentlemen, we don't got 'em
             else{
                 i1 = i2;
             }
+            i2 = i.next();
         }
+        return intersection;
     }
+
+
 
     /**
      * TODO: The toughest part of it all. (First complete reduce() and sort())
@@ -73,22 +97,22 @@ public class Availability extends TreeSet<Interval>{
      * <p>
      * 4. Once I am done iterating through the entire List, go ahead and return the Availability object.
      */
-    public Availability computeOverlap(Availability a) {
+    public static Availability computeOverlap(Availability a1, Availability a2) {
         // Part 1
-        reduce(null);
-        a.reduce(null);
+        a1.reduce(true);
+        a2.reduce(true);
 
         //Part 2
 //        Availability union = sort(this, a);
         //Let's assume that we don't do insertion sort
-        addAll(a);
-        Availability intersection = new Availability();
+        a1.addAll(a2);
+        Availability intersection = a1.reduce(false);
 
         /**
          * TODO: Part 3
          */
 
-        reduce(intersection);
+
 
         //Part 4
         return intersection;
