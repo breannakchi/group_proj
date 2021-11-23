@@ -1,17 +1,20 @@
 package milestone3JUnit;
 
-import static org.junit.jupiter.api.Assertions.*;
+//import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 
-import org.junit.jupiter.api.Test;
-
+//import org.junit.jupiter.api.Test;
+import static org.junit.Assert.*;
 import milestone3.Availability;
 import milestone3.Interval;
+import org.junit.Test;
 
+import static org.junit.Assert.*;
 class ReduceTests {
 
-	@Test//Abhinav
+	@Test
+//Abhinav
 	void test() {
 		int[] a = {10, 21, 21, 21, 21};
         int[] b = {10, 21, 21, 21, 21};
