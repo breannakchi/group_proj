@@ -21,7 +21,7 @@ public class Frame extends JFrame {
 		
 		
 		titleLable = new JLabel();
-		titleLable.setText("Welcome To CU Later");
+		titleLable.setText("Welcome To CUL8R");
 		//titleLable.setIcon(image);
 		titleLable.setHorizontalTextPosition(JLabel.CENTER);
 		titleLable.setVerticalTextPosition(JLabel.TOP);
