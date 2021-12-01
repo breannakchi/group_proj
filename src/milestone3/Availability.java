@@ -8,7 +8,7 @@ import java.util.*;
  *
  * If we use a TreeSet, information will be retained in sorted order. That might be really helpful
  */
-public class Availability extends ArrayList<Interval> {
+public class Availability extends TreeSet<Interval> {
 
     public static class IntervalComparator implements Comparator<Interval> {
         @Override
@@ -17,24 +17,24 @@ public class Availability extends ArrayList<Interval> {
         }
     }
 
-    private class AvailabilityIterator implements Iterator<Interval> {
-        int index = -1;
-
-        @Override
-        public boolean hasNext() {
-            sort(new IntervalComparator());
-            return index < size() - 1;
-        }
-
-        @Override
-        public Interval next() {
-            if(hasNext()) {
-                index++;
-                return get(index);
-            }
-            else return null;
-        }
-    }
+//    private class AvailabilityIterator implements Iterator<Interval> {
+//        int index = -1;
+//
+//        @Override
+//        public boolean hasNext() {
+//            sort(new IntervalComparator());
+//            return index < size() - 1;
+//        }
+//
+//        @Override
+//        public Interval next() {
+//            if(hasNext()) {
+//                index++;
+//                return get(index);
+//            }
+//            else return null;
+//        }
+//    }
 
     public Availability(){
         super();
@@ -46,7 +46,7 @@ public class Availability extends ArrayList<Interval> {
 
     @Override
     public Iterator<Interval> iterator() {
-        return new AvailabilityIterator();
+        return super.iterator();
     }
 
     /**
@@ -59,21 +59,27 @@ public class Availability extends ArrayList<Interval> {
      * Else, save the overlaps in the Intersection.
      */
     public Availability reduce(boolean performReduction) {
+
+        if(size() < 2)
+            return this;
+
         Iterator<Interval> i = iterator();
 
         Interval i1, i2;
         i1 = i.next();
         i2 = i.next();//TODO: what if size of Availability is 1?
 
-        Availability intersection = new Availability();
+        Availability reduction, intersection;
+        intersection = reduction = new Availability();
 
-        while(i.hasNext()){
+        do {
+        //while(i.hasNext()){
             /*
                 If 1.end >= 2.start --> Ladies and Gentlemen, we got 'em
 
                 During this time i have to calculate the overlap between these two intervals and return it.
             */
-            if(i1.getEnd().compareTo(i2.getStart()) != 1){
+            if(i1.getEnd().compareTo(i2.getStart()) == 1){
 
                 if(performReduction) {
                     //We know that the younger one has an earlier start time
@@ -81,33 +87,50 @@ public class Availability extends ArrayList<Interval> {
                     //However we don't know if the older or younger has a later finish time
                     //TODO: Figure out who has the later finish time.
                     Timestamp reductionEnd = (i1.getEnd().compareTo(i2.getEnd()) == 1) ? i1.getEnd() :  i2.getEnd();
-                    Interval reduction = new Interval(reductionStart, reductionEnd);
+                    Interval reducedInterval = new Interval(reductionStart, reductionEnd);
 
                     //Add the reduced interval to the Availability, and remove the two intervals.
-                    add(reduction);
-                    remove (i1);
-                    remove(i2);
+                    reduction.add(reducedInterval);
+                    //remove (i1);
+                    //remove(i2);
                     //Assign the reduced interval to i1.
-                    i1 = reduction;
+                    i1 = reducedInterval;
+
                 }
                 else{
 
-                    Timestamp overlapStart = i2.getStart();
+                    Timestamp overlapStart = i1.getStart();
                     Timestamp overlapEnd = (i1.getEnd().compareTo(i2.getEnd()) == 1) ? i1.getEnd() :  i2.getEnd();
                     Interval overlap = new Interval(overlapStart, overlapEnd);
                     intersection.add(overlap);
 
                     //How do we handle the Interval pointers once we have completed the overlap
+                    i1 = overlap;
                 }
+
+                if(i.hasNext()) {
+                    i2 = i.next();
+                    continue;
+                }
+                else break;
             }
-            //Ladies and Gentlemen, we don't got 'em
             else{
+                reduction.add(i1);
                 i1 = i2;
             }
+
+            //Ladies and Gentlemen, we don't got 'em
+            //Move both of the Interval pointers down the line.
+
+
+
             if(i.hasNext())  i2 = i.next();
-            else break;
-        }
-        return intersection;
+            else {
+                reduction.add(i2);
+                break;
+            }
+        } while(i.hasNext());
+        return (performReduction ? reduction : intersection);
     }
 
 
@@ -141,6 +164,14 @@ public class Availability extends ArrayList<Interval> {
         //Part 3
         Availability intersection = a1.reduce(false);
 
+        //Part 3.5 Reduce the thing until it is simplified
+        int size1 = intersection.size();
+        int size2 = 0;
+        do{
+            intersection = intersection.reduce(true);
+            size2 = intersection.size();
+        } while(size2 > size1);
+
         //Part 4
         return intersection;
     }
@@ -156,6 +187,8 @@ public class Availability extends ArrayList<Interval> {
 
         return null;
     }
+
+
 
 
     /**

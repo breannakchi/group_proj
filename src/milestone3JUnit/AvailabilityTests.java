@@ -122,17 +122,22 @@ public class AvailabilityTests {
 
 
         int[] a = {10, 21, 21, 21, 21};
-        int[] b = {10, 21, 21, 21, 21};
+        int[] b = {30, 21, 21, 21, 21};
         Interval i1 = new Interval(a, b);
 
         int[] c = {20, 21, 21, 21, 21};
         int[] d = {100, 21, 21, 21, 21};
         Interval i2 = new Interval(c, d);
 
-        Availability apple = new Availability();
-        Availability bannana = new Availability();
 
-       System.out.println(computeOverlap(apple,bannana));
+
+        Availability preReduction = new Availability ();
+        preReduction.add(i1);
+        preReduction.add(i2);
+        Availability postReduction = preReduction.reduce(true);
+        assertNotEquals(preReduction,postReduction);
+        System.out.println("Pre: " + preReduction);
+        System.out.println("Post: " + postReduction);
 
 
     }
@@ -146,12 +151,12 @@ public class AvailabilityTests {
 
         // year, month, date, hour, minute
 
-        int[] a = {10, 21, 21, 21, 21};
-        int[] b = {10, 21, 21, 21, 21};
+        int[] a = {10, 2, 21, 21, 21};
+        int[] b = {10, 2, 21, 21, 21};
         Interval i1 = new Interval(a, b);
 
-        int[] c = {20, 21, 25, 11, 21};
-        int[] d = {100, 21, 21, 21, 21};
+        int[] c = {20, 2, 25, 11, 21};
+        int[] d = {100, 2, 21, 21, 21};
         Interval i2 = new Interval(c, d);
 
         // Karan
@@ -159,18 +164,18 @@ public class AvailabilityTests {
         int[] f = {50, 10, 25, 12, 45};
         Interval i3 = new Interval(e, f);
 
-        int[] g = {2000, 11, 25, 11, 46};
-        int[] h = {2050, 10, 25, 12, 45};
+        int[] g = {0, 11, 25, 11, 46};
+        int[] h = {50, 10, 25, 12, 45};
         Interval i4 = new Interval(g, h);
 
         // year, month, date, hour, minute
 
-        int[] i = {1999, 9, 22, 21, 45};
-        int[] j = {2001, 8, 12, 10, 45};
+        int[] i = {-1, 9, 22, 21, 45};
+        int[] j = {1, 8, 12, 10, 45};
         Interval i5 = new Interval(i, j);
 
-        int[] k = {2022, 11, 25, 11, 46};
-        int[] l = {2050, 10, 25, 12, 45};
+        int[] k = {22, 11, 25, 11, 46};
+        int[] l = {50, 10, 25, 12, 45};
         Interval i6 = new Interval(k, l);
 
         Availability apple = new Availability();
@@ -183,6 +188,8 @@ public class AvailabilityTests {
         banana.add(i4);
         banana.add(i5);
         banana.add(i6);
+
+        System.out.println(apple + " " +  banana);
 
         System.out.println(computeOverlap(apple,banana));
 
@@ -236,6 +243,31 @@ public class AvailabilityTests {
 
     }
 
+    /**
+     * Can we perform a reduction and a computeOverlap()?
+     */
+
+    @Test
+    public void test6() {
+        int[] a = {10, 21, 21, 21, 21};
+        int[] b = {10, 21, 21, 21, 21};
+        Interval i1 = new Interval(a, b);
+
+        int[] c = {20, 21, 21, 21, 21};
+        int[] d = {100, 21, 21, 21, 21};
+        Interval i2 = new Interval(c, d);
+
+
+        ArrayList<Interval> list = new ArrayList<Interval>();
+        list.add(i1);
+        list.add(i2);
+
+
+        Availability preReduction = new Availability (list);
+        Availability postReduction = preReduction.reduce(true);
+        assertEquals(preReduction,postReduction);
+
+    }
 
 }
 

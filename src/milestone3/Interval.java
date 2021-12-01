@@ -15,8 +15,8 @@ public class Interval implements Comparable<Interval> {
     }
 
     public Interval(int[] a, int[] b) {
-        start = new Timestamp(a[0] + 99, a[1], a[2], a[3], a[4], 0, 0);
-        end = new Timestamp(b[0] + 99, b[1], b[2], b[3], b[4], 0, 0);
+        start = new Timestamp(a[0] + 100, a[1], a[2], a[3], a[4], 0, 0);
+        end = new Timestamp(b[0] + 100, b[1], b[2], b[3], b[4], 0, 0);
     }
 
     /**
@@ -79,6 +79,7 @@ public class Interval implements Comparable<Interval> {
 
     @Override
     public String toString() {
+        //return ((Integer) start.getYear()).toString();
         return start.toString() + " " + end.toString();
     }
 }
