@@ -116,7 +116,7 @@ public class AvailabilityTests {
 
     @Test
     /**
-     * Singular Overlap
+     * Singular Overlap --> Passing Properly
      */
     public void test3(){
 
@@ -145,7 +145,7 @@ public class AvailabilityTests {
     @Test
     /**
      * Singular Overlap
-     * Karan
+     * Karan - modifed by Mickey --> Passing Properly now
      */
     public void test4(){
 
@@ -245,6 +245,8 @@ public class AvailabilityTests {
 
     /**
      * Can we perform a reduction and a computeOverlap()?
+     *
+     * Test Case written by Mickey --> passing properly
      */
 
     @Test
