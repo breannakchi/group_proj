@@ -11,13 +11,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
 
-public class Frame extends JFrame {
+public class TitleFrame extends JFrame {
 	JButton loginButton;
 	JLabel titleLable;
 	public boolean nextFrame = false;
 	
 	Border border = BorderFactory.createLineBorder(Color.green, 3);
-	Frame(){
+	TitleFrame(){
 		//ImageIcon image = new ImageIcon("Calendar1.jpg");
 		
 		
