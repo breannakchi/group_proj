@@ -11,6 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
+import javax.swing.*;
+import java.awt.*;
 
 public class Frame extends JFrame implements ActionListener {
 	JButton loginButton;
@@ -69,6 +71,9 @@ public class Frame extends JFrame implements ActionListener {
 		
 		
 		this.getContentPane().setBackground(new Color(0xF5F5DC));
+		
+		
+	
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -80,5 +85,11 @@ public class Frame extends JFrame implements ActionListener {
 		
 	}
 	
+//	public void paint(Graphics g) {
+//		Graphics2D circle = (Graphics2D) g;
+//		
+//		circle.setPaint(Color.magenta);
+//		circle.fillOval(0, 0, 100, 100);
+//	}
 	
 }
