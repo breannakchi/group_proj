@@ -55,11 +55,15 @@ public class SecondFrame extends JFrame implements ActionListener {
 		nameButton.setFocusable(false);
 		nameButton.setBackground(Color.LIGHT_GRAY);
 		
-		
+		//Text Field for starting hour
 		textFieldStartHour =  new JTextField();
 		textFieldStartHour.setPreferredSize(new Dimension(150,40));
-			
+		textFieldStartHour.setBounds(150,150,150,150);
+		
+		//Text Field for ending hour
 		textFieldStartMinute = new JTextField();	
+		textFieldStartMinute.setPreferredSize(new Dimension(150,40));
+		textFieldStartMinute.setBounds(250, 250, 250, 250);
 			
 		this.getContentPane().setBackground(new Color(0xF5F5DC));
 		//this.add(label);
@@ -71,22 +75,36 @@ public class SecondFrame extends JFrame implements ActionListener {
 		this.setSize(600, 600);
 		whitePanel.add(startHourButton);
 		whitePanel.add(textFieldStartHour);
+		whitePanel.add(textFieldStartMinute);
 		whitePanel.add(startMinuteButton);
-		whitePanel.add(nameButton);
+		
+		//whitePanel.add(nameButton);
 	}
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			String startMinute = "";
+			int startM = -1;
+			int startH = -1;
 			//name button
-			
-			
-			
-			
-			//submit
-			if(e.getSource() == startHourButton) {
-				this.dispose();
+			if(e.getSource() == startMinuteButton) {
+				 startMinute = textFieldStartMinute.getText();
+				 startM = Integer.parseInt(startMinute);
+				 System.out.println(startM);
 				
 			}
+			
+			
+			String startHour = "";
+			//submit
+			if(e.getSource() == startHourButton) {
+				 startHour = textFieldStartHour.getText();
+				 startH = Integer.parseInt(startHour);
+				 System.out.println(startH);
+			}
+			
+			
+			
 		}
 }
 			
