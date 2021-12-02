@@ -183,6 +183,10 @@ public class SecondFrame extends JFrame implements ActionListener {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(1500, 600);
 		
+		//makes app open at center of screen
+		this.setLocationRelativeTo(null);
+		
+		
 		beigePanel.add(startHourButton);
 		beigePanel.add(endHourButton);
 		

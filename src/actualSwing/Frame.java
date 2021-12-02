@@ -51,6 +51,10 @@ public class Frame extends JFrame implements ActionListener {
 		loginButton.setFocusable(false);
 		loginButton.setBackground(Color.LIGHT_GRAY);
 		
+		//trying to add some graphics
+		
+		
+		
 		this.setTitle("CUL8R");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
@@ -59,6 +63,7 @@ public class Frame extends JFrame implements ActionListener {
 		this.add(titleLable);
 		this.add(catchline);
 		this.add(loginButton);
+		this.setLocationRelativeTo(null);
 		
 		this.setLayout(null);
 		
