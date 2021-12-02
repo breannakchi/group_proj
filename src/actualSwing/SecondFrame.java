@@ -47,41 +47,45 @@ public class SecondFrame extends JFrame implements ActionListener {
      Availability user = new Availability();
     Availability dummyUser = new Availability();
 
-    int[] a = {year, month, day, 21, 21};
-    int[] b = {year, month, day, 21, 21};
+    int[] a = {year, month, day, 21, 0};
+    int[] b = {year, month, day, 23,0 };
     Interval i1 = new Interval(a, b);
 
-    int[] c = {year, month, day, 11, 21};
-    int[] d = {year, month, day, 21, 21};
-    Interval i2 = new Interval(c, d);
+	int[] c = {year, month, day, 15, 0};
+	int[] d = {year, month, day, 20,0 };
+	Interval i2 = new Interval(c, d);
 
-    // Karan
-    int[] e = {year, month, day, 11, 46};
-    int[] f = {year, month, day, 12, 45};
-    Interval i3 = new Interval(e, f);
-
-    int[] g = {year, month, day, 11, 46};
-    int[] h = {year, month, day, 12, 45};
-    Interval i4 = new Interval(g, h);
-
-    // year, month, date, hour, minute
-
-    int[] i = {year, month, day, 21, 45};
-    int[] j = {year, month, day, 10, 45};
-    Interval i5 = new Interval(i, j);
-
-    int[] k = {year, month, day, 11, 46};
-    int[] l = {year, month, day, 12, 45};
-    Interval i6 = new Interval(k, l);
+//    int[] c = {year, month, day, 11, 21};
+//    int[] d = {year, month, day, 21, 21};
+//    Interval i2 = new Interval(c, d);
+//
+//    // Karan
+//    int[] e = {year, month, day, 11, 46};
+//    int[] f = {year, month, day, 12, 45};
+//    Interval i3 = new Interval(e, f);
+//
+//    int[] g = {year, month, day, 11, 46};
+//    int[] h = {year, month, day, 12, 45};
+//    Interval i4 = new Interval(g, h);
+//
+//    // year, month, date, hour, minute
+//
+////    int[] i = {year, month, day, 21, 45};
+////    int[] j = {year, month, day, 10, 45};
+////    Interval i5 = new Interval(i, j);
+//
+//    int[] k = {year, month, day, 11, 46};
+//    int[] l = {year, month, day, 12, 45};
+//    Interval i6 = new Interval(k, l);
 
 		
 	SecondFrame() {
 		dummyUser.add(i1);
         dummyUser.add(i2);
-        dummyUser.add(i3);
-        dummyUser.add(i4);
-        dummyUser.add(i5);
-        dummyUser.add(i6);
+//        dummyUser.add(i3);
+//        dummyUser.add(i4);
+//        dummyUser.add(i5);
+//        dummyUser.add(i6);
 		//Left Panel	
 		beigePanel = new JPanel();
 		beigePanel.setBackground(new Color(0xF5F5DC));
