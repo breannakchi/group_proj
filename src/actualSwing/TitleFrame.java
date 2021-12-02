@@ -3,7 +3,6 @@ package actualSwing;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -12,17 +11,18 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
 
-public class Frame extends JFrame implements ActionListener {
+public class TitleFrame extends JFrame {
 	JButton loginButton;
 	JLabel titleLable;
+	public boolean nextFrame = false;
 	
 	Border border = BorderFactory.createLineBorder(Color.green, 3);
-	Frame(){
+	TitleFrame(){
 		//ImageIcon image = new ImageIcon("Calendar1.jpg");
 		
 		
 		titleLable = new JLabel();
-		titleLable.setText("Welcome To CUL8R");
+		titleLable.setText("Welcome To CU Later");
 		//titleLable.setIcon(image);
 		titleLable.setHorizontalTextPosition(JLabel.CENTER);
 		titleLable.setVerticalTextPosition(JLabel.TOP);
@@ -34,7 +34,7 @@ public class Frame extends JFrame implements ActionListener {
 		
 		loginButton = new JButton();
 		loginButton.setBounds(100,300,250,50);
-		loginButton.addActionListener(this);
+		loginButton.addActionListener(e -> this.setVisible(false));
 		loginButton.setText("Login");
 		loginButton.setFocusable(false);
 		loginButton.setBackground(Color.LIGHT_GRAY);
@@ -52,15 +52,9 @@ public class Frame extends JFrame implements ActionListener {
 		
 		this.getContentPane().setBackground(new Color(0xF5F5DC));
 	}
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		if(e.getSource() == loginButton) {
-			this.dispose();
-			SecondFrame second = new SecondFrame();
-		}
-		
-	}
 	
+	public boolean getFrame() {
+		return this.nextFrame;
+	}
 	
 }
