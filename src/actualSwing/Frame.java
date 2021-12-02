@@ -3,6 +3,7 @@ package actualSwing;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -11,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
 
-public class Frame extends JFrame {
+public class Frame extends JFrame implements ActionListener {
 	JButton loginButton;
 	JLabel titleLable;
 	
@@ -33,7 +34,7 @@ public class Frame extends JFrame {
 		
 		loginButton = new JButton();
 		loginButton.setBounds(100,100,250,100);
-		loginButton.addActionListener(e -> System.out.println("poo"));
+		loginButton.addActionListener(this);
 		loginButton.setText("Login");
 		loginButton.setFocusable(false);
 		
@@ -49,6 +50,15 @@ public class Frame extends JFrame {
 		
 		
 		this.getContentPane().setBackground(new Color(0xF5F5DC));
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource() == loginButton) {
+			this.dispose();
+			SecondFrame second = new SecondFrame();
+		}
+		
 	}
 	
 	
