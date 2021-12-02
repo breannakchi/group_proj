@@ -15,6 +15,7 @@ import javax.swing.border.Border;
 public class Frame extends JFrame implements ActionListener {
 	JButton loginButton;
 	JLabel titleLable;
+	JLabel catchline;
 	
 	Border border = BorderFactory.createLineBorder(Color.green, 3);
 	Frame(){
@@ -22,15 +23,26 @@ public class Frame extends JFrame implements ActionListener {
 		
 		
 		titleLable = new JLabel();
-		titleLable.setText("Welcome To CUL8R");
+		titleLable.setText("Welcome To CUL8R :)");
 		//titleLable.setIcon(image);
 		titleLable.setHorizontalTextPosition(JLabel.CENTER);
 		titleLable.setVerticalTextPosition(JLabel.TOP);
 		titleLable.setVerticalAlignment(JLabel.CENTER);
 		titleLable.setHorizontalAlignment(JLabel.CENTER);
-		titleLable.setBounds(100,100,250,250);
-		titleLable.setFont(new Font("MV Boli", Font.PLAIN, 20));
+		titleLable.setBounds(105,80,250,250);
+		titleLable.setFont(new Font("MV Boli", Font.PLAIN, 24));
 		//titleLable.setIconTextGap(-25);
+		
+		catchline = new JLabel();
+		catchline.setText("Making Meeting Up Easier");
+		//titleLable.setIcon(image);
+		catchline.setHorizontalTextPosition(JLabel.CENTER);
+		catchline.setVerticalTextPosition(JLabel.TOP);
+		catchline.setVerticalAlignment(JLabel.CENTER);
+		catchline.setHorizontalAlignment(JLabel.CENTER);
+		catchline.setBounds(100,120,250,250);
+		catchline.setFont(new Font("MV Boli", Font.PLAIN, 14));
+
 		
 		loginButton = new JButton();
 		loginButton.setBounds(100,300,250,50);
@@ -45,6 +57,7 @@ public class Frame extends JFrame implements ActionListener {
 		this.setSize(500,500);
 		this.setVisible(true);
 		this.add(titleLable);
+		this.add(catchline);
 		this.add(loginButton);
 		
 		this.setLayout(null);

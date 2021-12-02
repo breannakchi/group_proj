@@ -5,6 +5,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,6 +19,8 @@ import milestone3.Interval;
 
 public class SecondFrame extends JFrame implements ActionListener {
 	JLabel label;
+	JLabel print;
+	JLabel availability;
 	JPanel beigePanel;
 	JPanel whitePanel;
 	JTextField textFieldStartHour;
@@ -35,11 +38,12 @@ public class SecondFrame extends JFrame implements ActionListener {
 	
 	
 	
+	
 	//These are going to be hardcoded
     int year = 21, month = 12, day = 17;
     //These are going to be inputted
     int startHour, startMin, endHour, endMin;
-    Availability user = new Availability();
+     Availability user = new Availability();
     Availability dummyUser = new Availability();
 
     int[] a = {year, month, day, 21, 21};
@@ -80,12 +84,12 @@ public class SecondFrame extends JFrame implements ActionListener {
 		//Left Panel	
 		beigePanel = new JPanel();
 		beigePanel.setBackground(new Color(0xF5F5DC));
-		beigePanel.setBounds(0, 0, 300, 600);
+		beigePanel.setBounds(300, 0, 300, 600);
 		
-		//Right Panel
-		whitePanel = new JPanel();
-		whitePanel.setBackground(Color.white);
-		whitePanel.setBounds(300, 0, 300, 600);
+//		//Right Panel
+//		whitePanel = new JPanel();
+//		whitePanel.setBackground(Color.white);
+//		whitePanel.setBounds(300, 0, 300, 600);
 			
 			
 		//Start Hour Button	
@@ -159,25 +163,25 @@ public class SecondFrame extends JFrame implements ActionListener {
 		this.getContentPane().setBackground(new Color(0xF5F5DC));
 		//this.add(label);
 		this.add(beigePanel);
-		this.add(whitePanel);
+		//this.add(whitePanel);
 		this.setVisible(true);
 		this.setTitle("Get User Input");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(600, 600);
+		this.setSize(1500, 600);
 		
-		whitePanel.add(startHourButton);
-		whitePanel.add(endHourButton);
+		beigePanel.add(startHourButton);
+		beigePanel.add(endHourButton);
 		
-		whitePanel.add(textFieldStartHour);
-		whitePanel.add(textFieldEndHour);
-		whitePanel.add(textFieldStartMinute);
-		whitePanel.add(textFieldEndMinute);
+		beigePanel.add(textFieldStartHour);
+		beigePanel.add(textFieldEndHour);
+		beigePanel.add(textFieldStartMinute);
+		beigePanel.add(textFieldEndMinute);
 		
 		
-		whitePanel.add(startMinuteButton);
-		whitePanel.add(endMinuteButton);
-		whitePanel.add(addButton);
-		whitePanel.add(submitButton);
+		beigePanel.add(startMinuteButton);
+		beigePanel.add(endMinuteButton);
+		beigePanel.add(addButton);
+		beigePanel.add(submitButton);
 		
 		//whitePanel.add(nameButton);
 	}
@@ -234,16 +238,49 @@ public class SecondFrame extends JFrame implements ActionListener {
 			if(e.getSource() == submitButton) {
 	            //this.dispose();
 	            //new SecondFrame();
-	            System.out.println(Availability.computeOverlap(user, dummyUser));
-	        }
+	            
+				System.out.println(Availability.computeOverlap(user, dummyUser).toString());
+	            
+				submitButton.setVisible(false);
+	            addButton.setVisible(false);
+	            endHourButton.setVisible(false);
+	            startHourButton.setVisible(false);
+	            endMinuteButton.setVisible(false);
+	            startMinuteButton.setVisible(false);
+	            endMinuteButton.setVisible(false);
+	            textFieldStartHour.setVisible(false);
+	        	textFieldStartMinute.setVisible(false);
+	        	textFieldEndHour.setVisible(false);
+	        	textFieldEndMinute.setVisible(false);
+	            
+//	        	availability = new JLabel();
+//	        	availability.setText("Available Times:");
+//	        	availability.setHorizontalTextPosition(JLabel.CENTER);
+//	        	availability.setVerticalTextPosition(JLabel.TOP);
+//	        	availability.setVerticalAlignment(JLabel.CENTER);
+//	        	availability.setHorizontalAlignment(JLabel.LEFT);
+//	        	availability.setBounds(80, 80, 250, 250);
+//	        	availability.setFont(new Font("MV Boli", Font.PLAIN, 40));
+//	        	availability.setForeground(Color.black);
+	        	
+//	    		whitePanel.add(availability);
+	    		
+	        	
+	        	
+	            print = new JLabel();
+	            print.setText(Availability.computeOverlap(user, dummyUser).toString());
+	            print.setHorizontalTextPosition(JLabel.CENTER);
+	    		print.setVerticalTextPosition(JLabel.TOP);
+	    		print.setVerticalAlignment(JLabel.CENTER);
+	    		print.setHorizontalAlignment(JLabel.LEFT);
+	    		print.setBounds(10, 400, 250, 250);
+	    		print.setFont(new Font("MV Boli", Font.PLAIN, 50));
+	    		print.setForeground(Color.black);
+	    		
+	    		beigePanel.add(print);
+	    		
+	                    
+	      }	
 			
-			
-			
-			
-			
-		}
+	}
 }
-			
-			
-
-
