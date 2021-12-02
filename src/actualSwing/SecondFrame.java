@@ -1,6 +1,6 @@
 package actualSwing;
 
-<<<<<<< HEAD
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import java.awt.Color;
@@ -15,116 +15,81 @@ import javax.swing.JTextField;
 
 public class SecondFrame extends JFrame implements ActionListener {
 	JLabel label;
-	JPanel redPanel;
-	JPanel bluePanel;
-	JTextField textFieldTime;
-	JButton submitTimeButton;
+	JPanel beigePanel;
+	JPanel whitePanel;
+	JTextField textFieldStartHour;
+	JTextField textFieldStartMinute;
+	JButton startHourButton;
+	JButton nameButton;
+	JButton startMinuteButton;
 		
 	SecondFrame() {
-			
-		redPanel = new JPanel();
-		redPanel.setBackground(Color.red);
-		redPanel.setBounds(0, 0, 300, 600);
+		//Left Panel	
+		beigePanel = new JPanel();
+		beigePanel.setBackground(new Color(0xF5F5DC));
+		beigePanel.setBounds(0, 0, 300, 600);
 		
-		bluePanel = new JPanel();
-		bluePanel.setBackground(Color.blue);
-		bluePanel.setBounds(300, 0, 300, 600);
-			
-		label = new JLabel();
-		label.setText("What is your name?");
-		label.setForeground(Color.black);
+		//Right Panel
+		whitePanel = new JPanel();
+		whitePanel.setBackground(Color.white);
+		whitePanel.setBounds(300, 0, 300, 600);
 			
 			
-		submitTimeButton = new JButton();
-		textFieldTime =  new JTextField();
-		textFieldTime.setPreferredSize(new Dimension(250,40));
-			
+		//Start Time Button	
+		startHourButton = new JButton("Submit Start Hour");
+		startHourButton.addActionListener(this);
+		startHourButton.setFocusable(false);
+		startHourButton.setBackground(Color.LIGHT_GRAY);
+		startHourButton.setBounds(100,100,50,50);
 		
+		//Start Minute Button
+		startMinuteButton = new JButton("Submit Start Min");
+		startMinuteButton.addActionListener(this);
+		startMinuteButton.setFocusable(false);
+		startMinuteButton.setBackground(Color.LIGHT_GRAY);
+		startMinuteButton.setBounds(250,250,250,250);
+		
+		//Name Button
+		nameButton = new JButton("Enter name");
+		nameButton.addActionListener(this);
+		nameButton.setFocusable(false);
+		nameButton.setBackground(Color.LIGHT_GRAY);
+		
+		
+		textFieldStartHour =  new JTextField();
+		textFieldStartHour.setPreferredSize(new Dimension(150,40));
 			
-		submitTimeButton = new JButton("Time");
-		textFieldTime =  new JTextField();
-		textFieldTime.setPreferredSize(new Dimension(250,40));
-			
-			
+		textFieldStartMinute = new JTextField();	
 			
 		this.getContentPane().setBackground(new Color(0xF5F5DC));
-		this.add(label);
-		bluePanel.add(submitTimeButton);
-		bluePanel.add(textFieldTime);
-		this.add(redPanel);
-		this.add(bluePanel);
+		//this.add(label);
+		this.add(beigePanel);
+		this.add(whitePanel);
 		this.setVisible(true);
 		this.setTitle("Get User Input");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(600, 600);
+		whitePanel.add(startHourButton);
+		whitePanel.add(textFieldStartHour);
+		whitePanel.add(startMinuteButton);
+		whitePanel.add(nameButton);
 	}
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			
-=======
-import javax.swing.JFrame;
-import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
-
-public class SecondFrame extends JFrame {
-	JLabel label;
-	JPanel redPanel;
-	JPanel bluePanel;
-		
-		public SecondFrame() {
-			
-			
-			//label creating
-			label = new JLabel();
-			label.setText("What is your name?");
-			//label.setHorizontalTextPosition(JLabel.CENTER);
-			//label.setVerticalTextPosition(JLabel.TOP);
-			label.setForeground(Color.black);
-			
-			//creates panel
-			redPanel = new JPanel();
-			redPanel.setBackground(Color.red);
-			redPanel.setBounds(0, 0, 300, 600);
-			
-		    bluePanel = new JPanel();
-			bluePanel.setBackground(Color.blue);
-			bluePanel.setBounds(300, 0, 300, 600);
+			//name button
 			
 			
 			
 			
-			
-			//creates frame
-			JFrame frame = new JFrame();
-			
-			//creates the title
-			frame.setTitle("Get User Input");
-			
-			//allows it to close
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			
-			//sets the size
-			frame.setSize(600, 600);
-			
-			//sets the visibility
-			frame.setVisible(true);
-			
-			
-			
-			//color of frame
-			frame.getContentPane().setBackground(new Color(0xF5F5DC));
-			
-			//adds the label
-			frame.add(label);
-			
-			frame.add(redPanel);
-			frame.add(bluePanel);
->>>>>>> main
+			//submit
+			if(e.getSource() == startHourButton) {
+				this.dispose();
+				
+			}
 		}
+}
+			
+			
 
-	}
 

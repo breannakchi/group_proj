@@ -33,10 +33,11 @@ public class Frame extends JFrame implements ActionListener {
 		//titleLable.setIconTextGap(-25);
 		
 		loginButton = new JButton();
-		loginButton.setBounds(100,100,250,100);
+		loginButton.setBounds(100,300,250,50);
 		loginButton.addActionListener(this);
 		loginButton.setText("Login");
 		loginButton.setFocusable(false);
+		loginButton.setBackground(Color.LIGHT_GRAY);
 		
 		this.setTitle("CU Later");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
