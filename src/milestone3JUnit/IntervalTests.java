@@ -3,9 +3,7 @@ package milestone3JUnit;
 import milestone3.Interval;
 import org.junit.Test;
 
-import java.sql.Timestamp;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class IntervalTests {
 
