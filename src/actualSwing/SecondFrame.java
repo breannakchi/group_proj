@@ -1,20 +1,16 @@
 package actualSwing;
 
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
 import milestone3.Availability;
 import milestone3.Interval;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 
 public class SecondFrame extends JFrame implements ActionListener {
@@ -79,7 +75,7 @@ public class SecondFrame extends JFrame implements ActionListener {
 //    Interval i6 = new Interval(k, l);
 
 		
-	SecondFrame() {
+	SecondFrame() throws IOException {
 		dummyUser.add(i1);
         dummyUser.add(i2);
 //        dummyUser.add(i3);
@@ -89,14 +85,14 @@ public class SecondFrame extends JFrame implements ActionListener {
 		//Left Panel	
 		beigePanel = new JPanel();
 		beigePanel.setBackground(new Color(0xF5F5DC));
-		beigePanel.setBounds(300, 0, 1500, 600);
-		
+		beigePanel.setBounds(0, 0, 1400, 600);
+
 //		//Right Panel
 //		whitePanel = new JPanel();
 //		whitePanel.setBackground(Color.white);
 //		whitePanel.setBounds(300, 0, 300, 600);
-			
-			
+
+
 		//Start Hour Button	
 		startHourButton = new JButton("Submit Start Hour");
 		startHourButton.addActionListener(this);
@@ -172,20 +168,20 @@ public class SecondFrame extends JFrame implements ActionListener {
 		projectName.setVerticalTextPosition(JLabel.TOP);
 		projectName.setVerticalAlignment(JLabel.CENTER);
 		projectName.setHorizontalAlignment(JLabel.LEFT);
-		projectName.setBounds(1000, 300, 1500, 500);
+		projectName.setBounds(1000, 300, 1400, 500);
 		projectName.setFont(new Font("MV Boli", Font.PLAIN, 15));
 		projectName.setForeground(Color.black);
-    	
-	
-			
-		this.getContentPane().setBackground(new Color(0xF5F5DC));
+
+
+
+		//this.getContentPane().setBackground(new Color(0xF5F5DC));
 		//this.add(label);
 		this.add(beigePanel);
 		//this.add(whitePanel);
 		this.setVisible(true);
-		this.setTitle("Get User Input");
+		this.setTitle("Tell Your Availability");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(1500, 600);
+		this.setSize(1400, 600);
 		
 		//makes app open at center of screen
 		this.setLocationRelativeTo(null);
