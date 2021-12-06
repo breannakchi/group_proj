@@ -21,30 +21,16 @@ import javax.swing.*;
 
 
 public class Frame extends JFrame implements ActionListener {
+	// Initialize different types of label and button
 	JButton loginButton;
 	JLabel titleLable;
 	JLabel catchline;
-	//JLabel Background;
-
-	// BackGround Image
-	JPanel contentPane = new JPanel() {
-		public void paintComponent(Graphics g) {
-			Image img = Toolkit.getDefaultToolkit().getImage(
-					this.getClass().getResource("src/actualSwing/schedule.jpeg"));
-			g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
-
-		}
-
-	};
 
 	Border border = BorderFactory.createLineBorder(Color.green, 3);
 	public Frame() throws IOException {
 
-		//ImageIcon img1 = new ImageIcon("actualSwing/schedule.jpeg");
-		//Background = new JLabel("",img,JLabel.CENTER);
-		//Background.setBounds(0,0,480,500);
-
 		titleLable = new JLabel();
+		// To add the font for the text
 		Font font = new Font("Courier", Font.BOLD,12);
 		titleLable.setFont(font);
 		titleLable.setText("Welcome To CUL8R :)");
@@ -71,7 +57,7 @@ public class Frame extends JFrame implements ActionListener {
 		catchline.setBounds(100,120,250,250);
 		catchline.setFont(new Font("MV Boli", Font.PLAIN, 14));
 
-		
+		// Working on Login button
 		loginButton = new JButton();
 		loginButton.setBounds(100,300,250,50);
 		loginButton.addActionListener(this);
@@ -82,11 +68,15 @@ public class Frame extends JFrame implements ActionListener {
 		//trying to add some graphics
 
 
+		// Reading the file image location
+		//Make sure to change  pathname according to your file location. Otherwise the code will not run properly.
 		this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("/Users/saurabhagrawal/Desktop/cs151/group_proj/src/actualSwing/sched1.jpeg")))));
 		this.setVisible(true);
+		// Title for our front page.
 		this.setTitle("CUL8R");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
+		// Intialise the fix size for first frame;
 		this.setSize(480,500);
 		this.setVisible(true);
 		this.add(titleLable);
@@ -95,20 +85,16 @@ public class Frame extends JFrame implements ActionListener {
 		this.setLocationRelativeTo(null);
 
 		this.setLayout(null);
-		// To Add BackGround Image
-		//this.add(Background);
-		//this.setLocation
+		// To Add BackGround Background color if we background image is not required.
 		//this.getContentPane().setBackground(new Color(0x8BE30606, true));
-
-		//this.getContentPane().add(contentPane) ;
-
-	
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		// Action will be performed to open the second frame when login button will be clicked
 		if(e.getSource() == loginButton) {
 			this.dispose();
+			// Try-catch method
 			try {
 				SecondFrame second = new SecondFrame();
 			} catch (IOException ioException) {
@@ -117,16 +103,5 @@ public class Frame extends JFrame implements ActionListener {
 		}
 		
 	}
-
-
-
-//	public void paint(Graphics g) {
-//		Graphics2D circle = (Graphics2D) g;
-//		
-//		circle.setPaint(Color.magenta);
-//		circle.fillOval(0, 0, 100, 100);
-//	}
-
-
 	
 }

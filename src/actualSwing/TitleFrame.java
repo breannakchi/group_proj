@@ -31,7 +31,8 @@ public class TitleFrame extends JFrame {
 		titleLable.setBounds(100,100,250,250);
 		titleLable.setFont(new Font("MV Boli", Font.PLAIN, 20));
 		//titleLable.setIconTextGap(-25);
-		
+
+		// Login button working
 		loginButton = new JButton();
 		loginButton.setBounds(100,300,250,50);
 		loginButton.addActionListener(e -> this.setVisible(false));
