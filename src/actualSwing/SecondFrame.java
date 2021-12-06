@@ -2,18 +2,17 @@ package actualSwing;
 
 
 import milestone3.Availability;
-import milestone3.Interval;
+import milestone3.*;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
 
 
 public class SecondFrame extends JFrame implements ActionListener {
+	//Basic swing commands
 	JLabel label;
 	JLabel print;
 	JLabel availability;
@@ -120,13 +119,15 @@ public class SecondFrame extends JFrame implements ActionListener {
 		endMinuteButton.setFocusable(false);
 		endMinuteButton.setBackground(Color.LIGHT_GRAY);
 		endMinuteButton.setBounds(250,250,250,250);
-		
+
+		//Add Button
 		addButton = new JButton("Add");
 		addButton.addActionListener(this);
 		addButton.setFocusable(false);
 		addButton.setBackground(Color.LIGHT_GRAY);
 		addButton.setBounds(100,100,50,50);
-		
+
+		//Submit Button
 		submitButton = new JButton("Submit");
 		submitButton.addActionListener(this);
 		submitButton.setFocusable(false);
@@ -174,8 +175,7 @@ public class SecondFrame extends JFrame implements ActionListener {
 
 
 
-		//this.getContentPane().setBackground(new Color(0xF5F5DC));
-		//this.add(label);
+		// Adding panel to  jframe
 		this.add(beigePanel);
 		//this.add(whitePanel);
 		this.setVisible(true);
